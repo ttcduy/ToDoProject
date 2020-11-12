@@ -27,10 +27,10 @@ export class ToDoTaskService {
           }
           throwError('Error');
         }
-      ));
+        ));
   }
 
-    editTask(listId: number, taskId: number, task: ITask): Observable<ITask> {
+  editTask(listId: number, taskId: number, task: ITask): Observable<ITask> {
     const params = {
       name: task.name,
       completed: task.completed,
@@ -44,7 +44,7 @@ export class ToDoTaskService {
           }
           throwError('Error');
         }
-      ));
+        ));
   }
 
   deleteTask(listId: number, taskId: number): Observable<boolean> {
@@ -56,10 +56,10 @@ export class ToDoTaskService {
           }
           throwError('Error');
         }
-      ));
+        ));
   }
 
-  getTasks(listId: number): Observable<ITask[]> {
+  getListTasks(listId: number): Observable<ITask[]> {
     return this.restService.get(environment.apiUrl + '/lists/' + listId + '/tasks')
       .pipe(
         map(res => {

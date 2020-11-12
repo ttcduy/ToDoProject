@@ -25,6 +25,17 @@ export class TodoListService {
       ));
   }
 
+  deleteList(listId: number): Observable<boolean> {
+    return this.restService.delete(environment.apiUrl + '/lists/' + listId)
+      .pipe(
+        map(res => {
+          if (res) {
+            return true;
+          }
+          throwError('Error');
+        }
+      ));
+  }
 
   editList(listId: number, name: string): Observable<IList> {
     const params = {
@@ -35,18 +46,6 @@ export class TodoListService {
         map(res => {
           if (res) {
             return res as IList;
-          }
-          throwError('Error');
-        }
-      ));
-  }
-
-  deleteList(listId: number): Observable<boolean> {
-    return this.restService.delete(environment.apiUrl + '/lists/' + listId)
-      .pipe(
-        map(res => {
-          if (res) {
-            return true;
           }
           throwError('Error');
         }

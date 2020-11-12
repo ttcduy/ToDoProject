@@ -34,16 +34,6 @@ export class EditListComponent implements OnInit {
     });
   }
 
-  getTasks() {
-    this.taskService.getTasks(this.listId).subscribe(
-      res => {
-        this.tasks = res;
-      },
-      error => {
-        console.log('getTasks Error', error);
-      }
-    );
-  }
 
   editListName() {
     this.todoListService.editList(this.listId, this.listName).subscribe(
@@ -68,6 +58,17 @@ export class EditListComponent implements OnInit {
         );
       }
     });
+  }
+
+  getTasks() {
+    this.taskService.getListTasks(this.listId).subscribe(
+      res => {
+        this.tasks = res;
+      },
+      error => {
+        console.log('getTasks Error', error);
+      }
+    );
   }
 
   createTask() {

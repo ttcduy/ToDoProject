@@ -19,14 +19,6 @@ export class TodoListComponent implements OnInit {
     this.getList();
   }
 
-  getList() {
-    this.todoListService.getLists().subscribe(res => {
-      this.lists = res;
-    }, error => {
-      console.log('getLists Error', error);
-    });
-  }
-
   createList() {
     this.todoListService.addNewList(this.newList).subscribe(res => {
       this.lists.unshift(res);
@@ -36,6 +28,14 @@ export class TodoListComponent implements OnInit {
 
   editList(list: IList) {
     this.router.navigate(['/todo-list', list.id, list.name]);
+  }
+
+  getList() {
+    this.todoListService.getLists().subscribe(res => {
+      this.lists = res;
+    }, error => {
+      console.log('getLists Error', error);
+    });
   }
 
   deleteList(id: number, index: number) {
