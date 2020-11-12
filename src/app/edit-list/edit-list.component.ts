@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ITask } from '../modals/list';
 import { EditTaskComponent } from '../edit-task/edit-task.component';
@@ -22,7 +22,8 @@ export class EditListComponent implements OnInit {
     private route: ActivatedRoute,
     private taskService: ToDoTaskService,
     private todoListService: TodoListService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -44,6 +45,10 @@ export class EditListComponent implements OnInit {
         console.log('getTasks Error', error);
       }
     );
+  }
+
+  backtoDoListScreen() {
+    this.router.navigate(['/..']);
   }
 
   onCheckboxChange(taskId: number) {
