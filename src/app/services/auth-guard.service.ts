@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
   constructor(private router: Router) { }
-    canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    canActivate() {
       if (localStorage.getItem('apiKey')) {
           return true;
       }

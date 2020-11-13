@@ -41,7 +41,7 @@ export class TodoListService {
     const params = {
       name
     };
-    return this.restService.put(environment.apiUrl + '/lists/' + + listId, params)
+    return this.restService.put(environment.apiUrl + '/lists/' + listId, params)
       .pipe(
         map(res => {
           if (res) {
