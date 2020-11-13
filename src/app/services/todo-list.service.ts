@@ -25,45 +25,21 @@ export class TodoListService {
       ));
   }
 
-  deleteList(listId: number): Observable<boolean> {
-    return this.restService.delete(environment.apiUrl + '/lists/' + listId)
-      .pipe(
-        map(res => {
-          if (res) {
-            return true;
-          }
-          throwError('Error');
-        }
-      ));
+  deleteList(listId: number) {
+    return this.restService.delete(environment.apiUrl + '/lists/' + listId);
   }
 
-  editList(listId: number, name: string): Observable<IList> {
+  editList(listId: number, name: string) {
     const params = {
       name
     };
-    return this.restService.put(environment.apiUrl + '/lists/' + listId, params)
-      .pipe(
-        map(res => {
-          if (res) {
-            return res as IList;
-          }
-          throwError('Error');
-        }
-      ));
+    return this.restService.put(environment.apiUrl + '/lists/' + listId, params);
   }
 
-  addNewList(name: string): Observable<IList> {
+  addNewList(name: string) {
     const params = {
       name
     };
-    return this.restService.post(environment.apiUrl + '/lists', params)
-      .pipe(
-        map(res => {
-          if (res) {
-            return res as IList;
-          }
-          throwError('Error');
-        }
-      ));
+    return this.restService.post(environment.apiUrl + '/lists', params);
   }
 }

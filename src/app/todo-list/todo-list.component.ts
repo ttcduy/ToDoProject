@@ -20,7 +20,7 @@ export class TodoListComponent implements OnInit {
   }
 
   createList() {
-    this.todoListService.addNewList(this.newList).subscribe(res => {
+    this.todoListService.addNewList(this.newList).subscribe((res: IList) => {
       this.lists.unshift(res);
       this.newList = '';
     });

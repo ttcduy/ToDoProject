@@ -52,10 +52,16 @@ export class EditListComponent implements OnInit {
   }
 
   onCheckboxChange(taskId: number) {
+
     this.tasks.forEach(item => {
       if (item.id === taskId) {
         item.completed = !item.completed;
-        this.taskService.editTask(this.listId, taskId, item).subscribe(
+        const params = {
+          name: item.name,
+          completed: item.completed,
+          listId: item.listId
+        };
+        this.taskService.editTask(this.listId, taskId, item, params).subscribe(
           res => {},
           error => {
             console.log('deleteList Error', error);
@@ -78,7 +84,7 @@ export class EditListComponent implements OnInit {
 
   createTask() {
     this.taskService.addNewTask(this.listId, this.newTask).subscribe(
-      res => {
+      (res: ITask) => {
         this.tasks.unshift(res);
         this.newTask = '';
       },
@@ -97,9 +103,13 @@ export class EditListComponent implements OnInit {
       task
     };
     const dialogRef = this.dialog.open(EditTaskComponent, dialogConfig);
-
+    const params = {
+      name: task.name,
+      completed: task.completed,
+      listId: task.listId
+    };
     dialogRef.afterClosed().subscribe(data => {
-      this.taskService.editTask(data.list_id, data.id, data).subscribe(
+      this.taskService.editTask(data.list_id, data.id, data, params).subscribe(
         res => {},
         error => {
           console.log('deleteList Error', error);
